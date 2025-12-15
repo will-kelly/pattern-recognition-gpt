@@ -1,0 +1,198 @@
+{
+  "schema_version": "1.0",
+  "prompt_library": {
+    "pattern_interview": {
+      "purpose": "Extract one pattern with enough structure to reuse across writing, strategy, and advisory work.",
+      "questions": [
+        {
+          "id": "q1_context",
+          "ask": "What is the arena for this pattern (AI pilots, content ops, product marketing, sales enablement, internal tools, knowledge systems)?",
+          "type": "single_select",
+          "options": [
+            "AI pilots and enablement",
+            "Content ops and governance",
+            "Messaging and positioning",
+            "Internal tools and adoption",
+            "Documentation and knowledge systems",
+            "FinOps and cloud economics",
+            "Other"
+          ]
+        },
+        {
+          "id": "q2_observation",
+          "ask": "What do you keep seeing happen, in plain language?",
+          "type": "free_text",
+          "constraints": {
+            "max_sentences": 3
+          }
+        },
+        {
+          "id": "q3_early_signal",
+          "ask": "What is the earliest signal that tells you this pattern is already present?",
+          "type": "free_text",
+          "prompts": [
+            "What shows up first in artifacts?",
+            "What shows up first in behavior?",
+            "What shows up first in tool usage?"
+          ]
+        },
+        {
+          "id": "q4_why_leaders_miss_it",
+          "ask": "Why do leaders miss it, rationalize it, or reward it?",
+          "type": "free_text",
+          "prompts": [
+            "What metric or narrative hides it?",
+            "What incentive keeps it alive?",
+            "What do they believe that is not true?"
+          ]
+        },
+        {
+          "id": "q5_prediction",
+          "ask": "If nothing changes, what happens next and when does it show up?",
+          "type": "free_text",
+          "constraints": {
+            "must_include_time_horizon": true,
+            "time_horizon_examples": [
+              "within 30 days",
+              "within a quarter",
+              "within two quarters"
+            ]
+          }
+        },
+        {
+          "id": "q6_consequence",
+          "ask": "What breaks next (trust, adoption, cycle time, revenue, risk, morale, quality)? Pick one primary, one secondary.",
+          "type": "two_select",
+          "options": [
+            "Trust",
+            "Adoption",
+            "Cycle time",
+            "Revenue",
+            "Risk and compliance",
+            "Morale and retention",
+            "Quality and correctness",
+            "Customer experience"
+          ]
+        },
+        {
+          "id": "q7_fix",
+          "ask": "What is the smallest real intervention that changes the trajectory?",
+          "type": "free_text",
+          "prompts": [
+            "What do you stop doing?",
+            "What do you start doing?",
+            "What do you measure instead?"
+          ]
+        },
+        {
+          "id": "q8_sharp_line",
+          "ask": "Give me one sharp line that captures the pattern in your voice.",
+          "type": "free_text",
+          "constraints": {
+            "max_sentences": 2
+          }
+        }
+      ]
+    },
+    "pattern_card_output_template": {
+      "template": {
+        "title_sentence_case": "{pattern_name}",
+        "sections": [
+          {
+            "heading_sentence_case": "Early signal",
+            "body": "{early_signal}"
+          },
+          {
+            "heading_sentence_case": "Why leaders miss it",
+            "body": "{why_leaders_miss_it}"
+          },
+          {
+            "heading_sentence_case": "What it predicts",
+            "body": "{prediction}"
+          },
+          {
+            "heading_sentence_case": "What breaks next",
+            "body": "Primary: {primary_consequence}. Secondary: {secondary_consequence}."
+          },
+          {
+            "heading_sentence_case": "What to do instead",
+            "body": "{fix}"
+          },
+          {
+            "heading_sentence_case": "Optional spicy line",
+            "body": "{sharp_line}"
+          }
+        ]
+      }
+    },
+    "packaging_prompts": {
+      "linkedin_post": {
+        "instructions": [
+          "Length target: 1800 to 2200 characters unless user specifies otherwise.",
+          "Lead with the conclusion in the first 2 lines.",
+          "Use 1 short personal credibility line, not a biography.",
+          "Include 3 early signals as bullets or tight lines.",
+          "Include a prediction with a time horizon.",
+          "End with a clear operator call to action and one question."
+        ],
+        "structure": [
+          "Hook (conclusion first)",
+          "Pattern name and definition",
+          "Early signals",
+          "Why leaders miss it",
+          "Prediction and consequence",
+          "What to do instead",
+          "Call and question"
+        ]
+      },
+      "substack_section": {
+        "instructions": [
+          "Start with a named pattern in sentence case.",
+          "Use a short anecdotal scene, clearly labeled as composite or hypothetical if not real.",
+          "Run the reader through early signal, leader blind spot, consequence, and fix.",
+          "End with a blunt takeaway and a practical checklist."
+        ],
+        "checklist_items_min": 5
+      },
+      "internal_memo": {
+        "instructions": [
+          "Audience: execs and functional leads.",
+          "Tone: direct, low drama.",
+          "Include: risk framing, costs of inaction, recommended decision, next 3 actions, owner for each."
+        ],
+        "sections": [
+          "Decision needed",
+          "What we are seeing",
+          "Why it matters",
+          "What happens if we do nothing",
+          "Recommendation",
+          "Next actions and owners"
+        ]
+      }
+    },
+    "signature_pattern_names_seed_list": [
+      "Strategy that cannot survive documentation",
+      "Messaging theater drift",
+      "AI pilot volume trap",
+      "Shadow systems as product-market fit",
+      "Content landfill growth",
+      "Governance by vibes",
+      "Consensus editing risk"
+    ],
+    "quality_gates": {
+      "must_have": [
+        "A named pattern, not a generic problem statement",
+        "At least one early signal that is observable",
+        "A prediction with a time horizon",
+        "A concrete intervention",
+        "A call to action"
+      ],
+      "red_flags": [
+        "Too many adjectives, not enough consequences",
+        "No time horizon in the prediction",
+        "Generic advice like 'align stakeholders'",
+        "Moralizing instead of diagnosing"
+      ]
+    }
+  }
+}
